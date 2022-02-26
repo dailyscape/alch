@@ -28,8 +28,8 @@ const getRunes = function() {
     let alchemiserprice = (fireruneprice * 5) + natureruneprice + (45 / 8 * divinechargeprice);
     let alchemisermkiiprice = natureruneprice + (150 / 25 * divinechargeprice);
 
-    document.getElementById('firerune').innerHTML = '<img class="item_icon" src="https://secure.runescape.com/m=itemdb_rs/obj_sprite.gif?id=' + fireruneid + '"> ' + fireruneprice + ' x' + fireruneqty + ' = ' (fireruneprice * fireruneqty);
-    document.getElementById('naturerune').innerHTML = '<img class="item_icon" src="https://secure.runescape.com/m=itemdb_rs/obj_sprite.gif?id=' + natureruneid + '"> ' + natureruneprice+ ' x' + natureruneqty + ' = ' (natureruneprice * natureruneqty);
+    document.getElementById('firerune').innerHTML = '<img class="item_icon" src="https://secure.runescape.com/m=itemdb_rs/obj_sprite.gif?id=' + fireruneid + '"> ' + fireruneprice + ' x' + fireruneqty + ' = ' + (fireruneprice * fireruneqty);
+    document.getElementById('naturerune').innerHTML = '<img class="item_icon" src="https://secure.runescape.com/m=itemdb_rs/obj_sprite.gif?id=' + natureruneid + '"> ' + natureruneprice+ ' x' + natureruneqty + ' = ' + (natureruneprice * natureruneqty);
     document.getElementById('divinecharge').innerHTML = '<img class="item_icon" src="https://secure.runescape.com/m=itemdb_rs/obj_sprite.gif?id=' + divinechargeid + '"> ' + divinechargeprice.toFixed(2);
 
     document.getElementById('alchemiser').innerHTML = alchemiserprice;
