@@ -6,4 +6,13 @@ body {
 
 th {
     cursor: pointer;
+    text-align: right;
+}
+
+th.alignleft {
+    text-align: left;
+}
+
+td[data-value] {
+    text-align: right;
 }
