@@ -2,6 +2,9 @@ var fireruneid = 554;
 var natureruneid = 561;
 var divinechargeid = 36390;
 
+var dailyalchqty = 192;
+var dailyalchmkiiqty = 600;
+
 var checkAlch = [
     {id: 11115, alchval: 11475, buylimit: 500},
     {id: 11126, alchval: 12624, buylimit: 500},
@@ -49,12 +52,12 @@ const getRunes = function() {
         newRow.children[3].dataset.value = item.alchval;
         newRow.children[4].innerHTML = (item.alchval - rsapidata[item.id].price - alchemiserprice).toFixed(2);
         newRow.children[4].dataset.value = (item.alchval - rsapidata[item.id].price - alchemiserprice);
-        newRow.children[5].innerHTML = Math.floor((item.alchval - rsapidata[item.id].price - alchemiserprice) * item.buylimit).toLocaleString();
-        newRow.children[5].dataset.value = Math.floor((item.alchval - rsapidata[item.id].price - alchemiserprice) * item.buylimit);
+        newRow.children[5].innerHTML = Math.floor((item.alchval - rsapidata[item.id].price - alchemiserprice) * dailyalchqty).toLocaleString();
+        newRow.children[5].dataset.value = Math.floor((item.alchval - rsapidata[item.id].price - alchemiserprice) * dailyalchqty);
         newRow.children[6].innerHTML = (item.alchval - rsapidata[item.id].price - alchemisermkiiprice).toFixed(2);
         newRow.children[6].dataset.value = (item.alchval - rsapidata[item.id].price - alchemisermkiiprice);
-        newRow.children[7].innerHTML = ((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * item.buylimit).toLocaleString();
-        newRow.children[7].dataset.value = ((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * item.buylimit);
+        newRow.children[7].innerHTML = ((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * dailyalchmkiiqty).toLocaleString();
+        newRow.children[7].dataset.value = ((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * dailyalchmkiiqty);
 
         tbody.appendChild(newRow);
     }
