@@ -56,7 +56,7 @@ const getRunes = function() {
         newRow.children[5].dataset.value = Math.floor((item.alchval - rsapidata[item.id].price - alchemiserprice) * dailyalchqty);
         newRow.children[6].innerHTML = Math.floor(item.alchval - rsapidata[item.id].price - alchemisermkiiprice).toLocaleString();
         newRow.children[6].dataset.value = (item.alchval - rsapidata[item.id].price - alchemisermkiiprice);
-        newRow.children[7].innerHTML = ((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * dailyalchmkiiqty).toLocaleString();
+        newRow.children[7].innerHTML = Math.floor((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * dailyalchmkiiqty).toLocaleString();
         newRow.children[7].dataset.value = ((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * dailyalchmkiiqty);
 
         tbody.appendChild(newRow);
