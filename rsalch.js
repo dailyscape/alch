@@ -35,8 +35,8 @@ const getRunes = function() {
     document.getElementById('naturerune').innerHTML = '<img class="item_icon" src="https://secure.runescape.com/m=itemdb_rs/obj_sprite.gif?id=' + natureruneid + '"> ' + natureruneprice+ ' x' + natureruneqty + ' = ' + (natureruneprice * natureruneqty).toLocaleString();
     document.getElementById('divinecharge').innerHTML = '<img class="item_icon" src="https://secure.runescape.com/m=itemdb_rs/obj_sprite.gif?id=' + divinechargeid + '"> ' + divinechargeprice.toFixed(2);
 
-    document.getElementById('alchemiser').innerHTML = Math.floor(alchemiserprice).toFixed(1).toLocaleString();
-    document.getElementById('alchemisermkii').innerHTML = Math.floor(alchemisermkiiprice).toFixed(1).toLocaleString();
+    document.getElementById('alchemiser').innerHTML = alchemiserprice.toFixed(1).toLocaleString();
+    document.getElementById('alchemisermkii').innerHTML = alchemisermkiiprice.toFixed(1).toLocaleString();
 
     for (let item of checkAlch) {
 
