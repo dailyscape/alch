@@ -14,7 +14,7 @@ var checkAlch = [
     {id: 1664, alchval: 11025, buylimit: 500},
     {id: 24382, alchval: 11520, buylimit: 5000},
     {id: 25800, alchval: 10783, buylimit: 5000},
-    {id: 25800, alchval: 8983, buylimit: 5000},
+    {id: 25798, alchval: 8983, buylimit: 5000},
 ];
 
 const getRunes = function() {
