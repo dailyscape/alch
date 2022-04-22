@@ -2,6 +2,7 @@ body {
     background:#000;
     color: #c3c3c3;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    line-height: 32px;
 }
 
 th {
@@ -15,6 +16,11 @@ th.alignleft {
 
 td[data-value] {
     text-align: right;
+}
+
+#alchtable tr.item_row td img {
+    height:32px;
+    width:32px;
 }
 
 .fav-btn {
