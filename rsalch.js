@@ -1,3 +1,5 @@
+const storage = window.localStorage;
+
 var fireruneid = 554;
 var natureruneid = 561;
 var divinechargeid = 36390;
@@ -40,28 +42,37 @@ const getRunes = function() {
     document.getElementById('alchemiser').innerHTML = alchemiserprice.toFixed(1).toLocaleString();
     document.getElementById('alchemisermkii').innerHTML = alchemisermkiiprice.toFixed(1).toLocaleString();
 
-    for (let item of checkAlch) {
+    for (let itemid in rsapidata) {
+        if ("alch" in rsapidata[itemid]) {
+            let rowClone = sampleRow.content.cloneNode(true);
+            let newRow = rowClone.querySelector('tr');
 
-        let rowClone = sampleRow.content.cloneNode(true);
-        let newRow = rowClone.querySelector('tr');
+            newRow.dataset.id = itemid;
 
-        newRow.children[0].innerHTML = rsapidata[item.id].name;
-        newRow.children[1].innerHTML = rsapidata[item.id].price.toLocaleString();
-        newRow.children[1].dataset.value = rsapidata[item.id].price;
-        newRow.children[2].innerHTML = Math.floor(rsapidata[item.id].price + item.alchval - rsapidata[item.id].price - alchemiserprice).toLocaleString();
-        newRow.children[2].dataset.value = rsapidata[item.id].price + item.alchval - rsapidata[item.id].price - alchemiserprice;
-        newRow.children[3].innerHTML = (item.alchval - rsapidata[item.id].price).toLocaleString();
-        newRow.children[3].dataset.value = item.alchval;
-        newRow.children[4].innerHTML = Math.floor(item.alchval - rsapidata[item.id].price - alchemiserprice).toLocaleString();
-        newRow.children[4].dataset.value = (item.alchval - rsapidata[item.id].price - alchemiserprice);
-        newRow.children[5].innerHTML = Math.floor((item.alchval - rsapidata[item.id].price - alchemiserprice) * dailyalchqty).toLocaleString();
-        newRow.children[5].dataset.value = Math.floor((item.alchval - rsapidata[item.id].price - alchemiserprice) * dailyalchqty);
-        newRow.children[6].innerHTML = Math.floor(item.alchval - rsapidata[item.id].price - alchemisermkiiprice).toLocaleString();
-        newRow.children[6].dataset.value = (item.alchval - rsapidata[item.id].price - alchemisermkiiprice);
-        newRow.children[7].innerHTML = Math.floor((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * dailyalchmkiiqty).toLocaleString();
-        newRow.children[7].dataset.value = ((item.alchval - rsapidata[item.id].price - alchemisermkiiprice) * dailyalchmkiiqty);
+            let isFav = storage.getItem('alch-' + itemid) ?? 'false';
+            if (isFav !== 'false') {
+                newRow.dataset.fav = 'true';
+            }
 
-        tbody.appendChild(newRow);
+            newRow.children[1].dataset.name = rsapidata[itemid].name;
+            newRow.children[1].innerHTML = '<img class="item_icon" src="/rsdata/images/' + itemid + '.gif">' + rsapidata[itemid].name;
+            newRow.children[2].innerHTML = rsapidata[itemid].price.toLocaleString();
+            newRow.children[2].dataset.value = rsapidata[itemid].price;
+            newRow.children[3].innerHTML = Math.floor(rsapidata[itemid].price + rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice).toLocaleString();
+            newRow.children[3].dataset.value = rsapidata[itemid].price + rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice;
+            newRow.children[4].innerHTML = (rsapidata[itemid].alch - rsapidata[itemid].price).toLocaleString();
+            newRow.children[4].dataset.value = rsapidata[itemid].alch;
+            newRow.children[5].innerHTML = Math.floor(rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice).toLocaleString();
+            newRow.children[5].dataset.value = (rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice);
+            newRow.children[6].innerHTML = Math.floor((rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice) * dailyalchqty).toLocaleString();
+            newRow.children[6].dataset.value = Math.floor((rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice) * dailyalchqty);
+            newRow.children[7].innerHTML = Math.floor(rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice).toLocaleString();
+            newRow.children[7].dataset.value = (rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice);
+            newRow.children[8].innerHTML = Math.floor((rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice) * dailyalchmkiiqty).toLocaleString();
+            newRow.children[8].dataset.value = ((rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice) * dailyalchmkiiqty);
+
+            tbody.appendChild(newRow);
+        }
     }
 }
 
@@ -79,10 +90,10 @@ const makeSortable = function() {
             tableRows.sort((a, b) => {
                 if (columnindex == 0 && sortstate == 'asc') {
                     th.dataset.sort = 'desc';
-                    return a.children[columnindex].innerHTML.localeCompare(b.children[columnindex].innerHTML)
+                    return a.children[columnindex].dataset.name.localeCompare(b.children[columnindex].dataset.name);
                 } else if (columnindex == 0) {
                     th.dataset.sort = 'asc';
-                    return b.children[columnindex].innerHTML.localeCompare(a.children[columnindex].innerHTML)
+                    return b.children[columnindex].dataset.name.localeCompare(a.children[columnindex].dataset.name);
                 } else if (sortstate == 'asc') {
                     th.dataset.sort = 'desc';
                     return parseFloat(b.children[columnindex].dataset.value) - parseFloat(a.children[columnindex].dataset.value);
@@ -108,6 +119,12 @@ const defaultSort = function() {
     const tableRows = Array.from(tbody.querySelectorAll('tr'));
 
     tableRows.sort((a, b) => {
+        if (a.dataset.fav == 'true' && b.dataset.fav == 'false') {
+            return -1;
+        } else if (b.dataset.fav == 'true' && a.dataset.fav == 'false') {
+            return 1;
+        }
+
         return parseFloat(b.children[defaultSortColumn].dataset.value) - parseFloat(a.children[defaultSortColumn].dataset.value);
     });
 
@@ -116,8 +133,27 @@ const defaultSort = function() {
     }
 }
 
+const favEventListeners = function() {
+    let favButtons = document.querySelectorAll('tr.item_row .fav button.fav-btn');
+    for (let favButton of favButtons) {
+        favButton.addEventListener('click', function() {
+            let thisRow = this.closest('tr');
+            let thisItemId = thisRow.dataset.id;
+            let newState = (thisRow.dataset.fav === 'true') ? 'false' : 'true'
+            thisRow.dataset.fav = newState;
+
+            if (newState === 'true') {
+                storage.setItem('alch-' + thisItemId, newState);
+            } else {
+                storage.removeItem('alch-' + thisItemId);
+            }
+        });
+    }
+}
+
 window.onload = function() {
     getRunes();
     makeSortable();
     defaultSort();
+    favEventListeners();
 };

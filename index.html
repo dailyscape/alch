@@ -43,6 +43,7 @@
 <table id="alchtable" class="table table-dark table-striped table-hover">
     <thead>
         <tr>
+            <th>&nbsp;</th>
             <th class="alignleft" data-sort="asc">Item</th>
             <th data-sort="asc">GE Price</th>
             <th data-sort="asc">Breakeven</th>
@@ -57,7 +58,11 @@
 </table>
 
 <template id="sample_row">
-    <tr>
+    <tr class="item_row" data-fav="false">
+        <td class="fav">
+            <button class="fav-on fav-btn fa btn btn-secondary btn-sm active">★</button>
+            <button class="fav-off fav-btn btn btn-secondary btn-sm active">☆</button>
+        </td>
         <td></td>
         <td></td>
         <td></td>
