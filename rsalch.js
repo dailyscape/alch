@@ -58,8 +58,8 @@ const getRunes = function() {
             newRow.children[1].innerHTML = '<img class="item_icon" src="/rsdata/images/' + itemid + '.gif">' + rsapidata[itemid].name;
             newRow.children[2].innerHTML = rsapidata[itemid].price.toLocaleString();
             newRow.children[2].dataset.value = rsapidata[itemid].price;
-            newRow.children[3].innerHTML = Math.floor(rsapidata[itemid].price + rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice).toLocaleString();
-            newRow.children[3].dataset.value = rsapidata[itemid].price + rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice;
+            newRow.children[3].innerHTML = Math.floor(rsapidata[itemid].alch - alchemiserprice).toLocaleString();
+            newRow.children[3].dataset.value = rsapidata[itemid].alch - alchemiserprice;
             newRow.children[4].innerHTML = (rsapidata[itemid].alch - rsapidata[itemid].price).toLocaleString();
             newRow.children[4].dataset.value = rsapidata[itemid].alch;
             newRow.children[5].innerHTML = Math.floor(rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice).toLocaleString();
