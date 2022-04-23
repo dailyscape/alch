@@ -19,6 +19,10 @@ td[data-value] {
     text-align: right;
 }
 
+nav {
+    height: 56px;
+}
+
 #alchtable tr.item_row td img {
     height:32px;
     width:32px;
