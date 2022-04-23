@@ -7,18 +7,6 @@ var divinechargeid = 36390;
 var dailyalchqty = 192;
 var dailyalchmkiiqty = 600;
 
-var checkAlch = [
-    {id: 11115, alchval: 11475, buylimit: 500},
-    {id: 11126, alchval: 12624, buylimit: 500},
-    {id: 1683, alchval: 10575, buylimit: 500},
-    {id: 11113, alchval: 12120, buylimit: 500},
-    {id: 1645, alchval: 10575, buylimit: 500},
-    {id: 1664, alchval: 11025, buylimit: 500},
-    {id: 24382, alchval: 11520, buylimit: 5000},
-    {id: 25800, alchval: 10783, buylimit: 5000},
-    {id: 25798, alchval: 8983, buylimit: 5000},
-];
-
 const getRunes = function() {
     const sampleRow = document.querySelector('#sample_row');
     const table = document.getElementById('alchtable');
