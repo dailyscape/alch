@@ -44,7 +44,8 @@ const getRunes = function() {
 
             newRow.children[1].dataset.name = rsapidata[itemid].name;
             newRow.children[1].innerHTML = '<img class="item_icon" src="/rsdata/images/' + itemid + '.gif">' + rsapidata[itemid].name;
-            newRow.children[2].innerHTML = rsapidata[itemid].price.toLocaleString();
+            // newRow.children[2].innerHTML = rsapidata[itemid].price.toLocaleString();
+            newRow.children[2].innerHTML = '<span title="Change: ' + (rsapidata[itemid].price > rsapidata[itemid].last ? '+' : '') + (rsapidata[itemid].last != rsapidata[itemid].price ? (rsapidata[itemid].price - rsapidata[itemid].last).toLocaleString() : '') + '">' + rsapidata[itemid].price.toLocaleString() + (rsapidata[itemid].price > rsapidata[itemid].last ? '<span class="trend_positive">▲</span>' : rsapidata[itemid].price < rsapidata[itemid].last ? '<span class="trend_negative">▼</span>' : '<span class="coin">●</span>') + '</span>';
             newRow.children[2].dataset.value = rsapidata[itemid].price;
             newRow.children[3].innerHTML = Math.floor(rsapidata[itemid].alch - alchemiserprice).toLocaleString();
             newRow.children[3].dataset.value = rsapidata[itemid].alch - alchemiserprice;
