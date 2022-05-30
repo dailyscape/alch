@@ -6,6 +6,10 @@ body {
     padding-top: 75px;
 }
 
+table {
+    caption-side: top;
+}
+
 caption {
     font-weight: bold;
     color: #c3c3c3;
@@ -26,10 +30,6 @@ td[data-value] {
 
 nav {
     height: 56px;
-}
-
-#alchemisercosts {
-    caption-side: top;
 }
 
 #alchemisercosts td.alchcost {
