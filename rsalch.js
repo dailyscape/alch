@@ -4,6 +4,8 @@ var fireruneid = 554;
 var natureruneid = 561;
 var divinechargeid = 36390;
 
+var skipids = ['554', '561', '36390'];
+
 var dailyalchqty = 192;
 var dailyalchmkiiqty = 600;
 
@@ -34,7 +36,7 @@ const getRunes = function() {
     document.getElementById('alchemisermkii').innerHTML = alchemisermkiiprice.toFixed(1).toLocaleString();
 
     for (let itemid in rsapidata) {
-        if ("alch" in rsapidata[itemid]) {
+        if ("highalch" in rsapidata[itemid] && !skipids.includes(itemid)) {
             let rowClone = sampleRow.content.cloneNode(true);
             let newRow = rowClone.querySelector('tr');
 
@@ -50,18 +52,18 @@ const getRunes = function() {
             // newRow.children[2].innerHTML = rsapidata[itemid].price.toLocaleString();
             newRow.children[2].innerHTML = '<span title="Change: ' + (rsapidata[itemid].price > rsapidata[itemid].last ? '+' : '') + (rsapidata[itemid].last != rsapidata[itemid].price ? (rsapidata[itemid].price - rsapidata[itemid].last).toLocaleString() : '') + '">' + rsapidata[itemid].price.toLocaleString() + (rsapidata[itemid].price > rsapidata[itemid].last ? '<span class="trend_positive">▲</span>' : rsapidata[itemid].price < rsapidata[itemid].last ? '<span class="trend_negative">▼</span>' : '<span class="coin">●</span>') + '</span>';
             newRow.children[2].dataset.value = rsapidata[itemid].price;
-            newRow.children[3].innerHTML = Math.floor(rsapidata[itemid].alch - alchemiserprice).toLocaleString();
-            newRow.children[3].dataset.value = rsapidata[itemid].alch - alchemiserprice;
-            newRow.children[4].innerHTML = (rsapidata[itemid].alch - rsapidata[itemid].price).toLocaleString();
-            newRow.children[4].dataset.value = rsapidata[itemid].alch;
-            newRow.children[5].innerHTML = Math.floor(rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice).toLocaleString();
-            newRow.children[5].dataset.value = (rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice);
-            newRow.children[6].innerHTML = Math.floor((rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice) * dailyalchqty).toLocaleString();
-            newRow.children[6].dataset.value = Math.floor((rsapidata[itemid].alch - rsapidata[itemid].price - alchemiserprice) * dailyalchqty);
-            newRow.children[7].innerHTML = Math.floor(rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice).toLocaleString();
-            newRow.children[7].dataset.value = (rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice);
-            newRow.children[8].innerHTML = Math.floor((rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice) * dailyalchmkiiqty).toLocaleString();
-            newRow.children[8].dataset.value = ((rsapidata[itemid].alch - rsapidata[itemid].price - alchemisermkiiprice) * dailyalchmkiiqty);
+            newRow.children[3].innerHTML = Math.floor(rsapidata[itemid].highalch - alchemiserprice).toLocaleString();
+            newRow.children[3].dataset.value = rsapidata[itemid].highalch - alchemiserprice;
+            newRow.children[4].innerHTML = (rsapidata[itemid].highalch - rsapidata[itemid].price).toLocaleString();
+            newRow.children[4].dataset.value = rsapidata[itemid].highalch;
+            newRow.children[5].innerHTML = Math.floor(rsapidata[itemid].highalch - rsapidata[itemid].price - alchemiserprice).toLocaleString();
+            newRow.children[5].dataset.value = (rsapidata[itemid].highalch - rsapidata[itemid].price - alchemiserprice);
+            newRow.children[6].innerHTML = Math.floor((rsapidata[itemid].highalch - rsapidata[itemid].price - alchemiserprice) * dailyalchqty).toLocaleString();
+            newRow.children[6].dataset.value = Math.floor((rsapidata[itemid].highalch - rsapidata[itemid].price - alchemiserprice) * dailyalchqty);
+            newRow.children[7].innerHTML = Math.floor(rsapidata[itemid].highalch - rsapidata[itemid].price - alchemisermkiiprice).toLocaleString();
+            newRow.children[7].dataset.value = (rsapidata[itemid].highalch - rsapidata[itemid].price - alchemisermkiiprice);
+            newRow.children[8].innerHTML = Math.floor((rsapidata[itemid].highalch - rsapidata[itemid].price - alchemisermkiiprice) * dailyalchmkiiqty).toLocaleString();
+            newRow.children[8].dataset.value = ((rsapidata[itemid].highalch - rsapidata[itemid].price - alchemisermkiiprice) * dailyalchmkiiqty);
 
             tbody.appendChild(newRow);
         }
